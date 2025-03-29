@@ -25,6 +25,7 @@ public class VRPlayerMovement : MonoBehaviour
 
         InputDevice leftDevice = InputDevices.GetDeviceAtXRNode(leftController);
         leftDevice.TryGetFeatureValue(CommonUsages.primary2DAxis, out Vector2 secondaryAxis);
+        rotationInput = secondaryAxis.x;
     }
 
     private void FixedUpdate()

@@ -1575,14 +1575,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310069021}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 2.163, y: 1.374, z: 13.713}
+  m_LocalScale: {x: 1, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2141794627}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &310069027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1619,11 +1619,11 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 2.5
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &321013856
@@ -4874,26 +4874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorAnimator: {fileID: 826590784}
   doorAudio: {fileID: 2111890178}
-  openDoorAction:
-    m_UseReference: 0
-    m_Action:
-      m_Name: Open Door
-      m_Type: 1
-      m_ExpectedControlType: Button
-      m_Id: cd7a72db-7d71-48bf-89d9-21a412b57778
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings:
-      - m_Name: 
-        m_Id: 6402719f-8517-425c-a26d-28f41a1797a9
-        m_Path: <OculusTouchController>{LeftHand}/primaryButton
-        m_Interactions: 
-        m_Processors: 
-        m_Groups: 
-        m_Action: Open Door
-        m_Flags: 0
-      m_Flags: 0
-    m_Reference: {fileID: 0}
+  rampAnimator: {fileID: 1767248443}
+  rampAudio: {fileID: 1767248442}
 --- !u!1 &830951879
 GameObject:
   m_ObjectHideFlags: 0
@@ -8646,6 +8628,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!82 &1767248442 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8306175561439509806, guid: 27a985fad084ffb4494b6a5fd0660a0c, type: 3}
+  m_PrefabInstance: {fileID: 144521873}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1767248443 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5255963281682614801, guid: 27a985fad084ffb4494b6a5fd0660a0c, type: 3}
+  m_PrefabInstance: {fileID: 144521873}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1778548126
 GameObject:
   m_ObjectHideFlags: 0
