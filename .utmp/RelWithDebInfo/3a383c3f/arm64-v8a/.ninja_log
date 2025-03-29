@@ -1,0 +1,19 @@
+# ninja log v5
+1837	2059	1743207458035586677	/Users/shalom/Desktop/DEV490/Capstone Project/DEV490-Capstone/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3a383c3f/obj/arm64-v8a/libgame.so	6680fa3ff498bde7
+2	1837	1743207457816589681	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	34c476996159fcfd
+7	1518	1743207457498595984	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	7f4b52d8a326204a
+4	1625	1743207457605331152	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	3de95d9ae34d6c33
+2	1680	1743207457661480108	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	a853f0579f07a9f
+7	1570	1743207457551122750	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	3a36c23162d68dfb
+6	1500	1743207457476916757	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	9dff64520879f14d
+3	1501	1743207457474434074	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	75b8fa0ed80f685c
+2	1501	1743207457474553824	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	c64b7519d4e8dd61
+2	925	1743208641091320758	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	75b8fa0ed80f685c
+2	926	1743208641091297300	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	9dff64520879f14d
+1	930	1743208641096665466	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	c64b7519d4e8dd61
+3	934	1743208641101555341	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	3a36c23162d68dfb
+3	977	1743208641146306383	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	7f4b52d8a326204a
+1	1010	1743208641180090799	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	a853f0579f07a9f
+2	1113	1743208641282442757	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	3de95d9ae34d6c33
+0	1215	1743208641386106965	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	34c476996159fcfd
+1216	1607	1743208641774136796	/Users/shalom/Desktop/DEV490/Capstone Project/DEV490-Capstone/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/3a383c3f/obj/arm64-v8a/libgame.so	6680fa3ff498bde7
