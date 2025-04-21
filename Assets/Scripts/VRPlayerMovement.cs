@@ -18,6 +18,11 @@ public class VRPlayerMovement : MonoBehaviour
     private Vector2 inputAxis;
     private float rotationInput;
 
+    private void Start()
+    {
+        SnapToGround();
+    }
+
     private void Update()
     {
         InputDevice rightDevice = InputDevices.GetDeviceAtXRNode(rightController);
@@ -30,10 +35,12 @@ public class VRPlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        AdjustCharacterHeight();
         CapsuleFollowHeadset();
         MovePlayer();
         RotatePlayer();
     }
+
 
     private void RotatePlayer()
     {
@@ -57,4 +64,27 @@ public class VRPlayerMovement : MonoBehaviour
         Vector3 capsuleCenter = transform.InverseTransformPoint(headsetTransform.position);
         characterController.center = new Vector3(capsuleCenter.x, characterController.height / 2 + characterController.skinWidth, capsuleCenter.z);
     }
+
+    private void SnapToGround()
+    {
+        if (Physics.Raycast(transform.position + Vector3.up, Vector3.down, out RaycastHit hit, 5f))
+        {
+            transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
+        }
+    }
+
+    private void AdjustCharacterHeight()
+    {
+        float headHeight = Mathf.Clamp(headsetTransform.localPosition.y, 1f, 2f);
+        characterController.height = headHeight;
+
+        Vector3 newCenter = Vector3.zero;
+        newCenter.y = characterController.height / 2 + characterController.skinWidth;
+        newCenter.x = headsetTransform.localPosition.x;
+        newCenter.z = headsetTransform.localPosition.z;
+
+        characterController.center = newCenter;
+    }
+
+
 }
