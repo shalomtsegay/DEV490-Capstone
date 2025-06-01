@@ -1,0 +1,65 @@
+{
+    "name": "XRInputActions",
+    "maps": [
+        {
+            "name": "Controller",
+            "id": "3b52f81e-569e-4068-a431-1e41bfc32e01",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "b13ddcdd-5d13-4819-8eef-08182f03bee5",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Activate",
+                    "type": "Button",
+                    "id": "5a699446-9839-48dc-bd3c-968c807cbc47",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "53da204a-1b5a-4adc-936a-51c87f70cc73",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "772a3f7a-df85-4d17-bd10-a6cbd15b22e4",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2be93b5f-b90d-4ac7-8b0e-cb2415e16bb4",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Activate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -1,33 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class AnswerButton : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI answerText;
+
     private bool isCorrect;
-    [SerializeField]
-    private TextMeshProUGUI answerText;
+    private QuestionSetup questionBubblePrefab;
 
-    public void SetAnswerText(string NewText)
+    public void SetAnswer(string text, bool correct, QuestionSetup prefab)
     {
-        answerText.text = NewText;
+        answerText.text = text;
+        isCorrect = correct;
+        questionBubblePrefab = prefab;
+
+        // Set up click listener
+        GetComponent<Button>().onClick.RemoveAllListeners();
+        GetComponent<Button>().onClick.AddListener(OnClick);
     }
 
-    public void SetIsCorrect(bool NewBool)
-    {
-        isCorrect = NewBool;
-    }
-
-    public void OnClick()
+    private void OnClick()
     {
         if (isCorrect)
         {
-            Debug.Log("Correct Answer");
+            Debug.Log("Correct!");
+            questionBubblePrefab.OnAnswerSelected(); // Only progress on correct
         }
         else
         {
-            Debug.Log("Wrong Answer");
+            Debug.Log("Incorrect! Try again.");
         }
     }
 }

@@ -2,58 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+using System.Linq;
 
 public class QuestionSetup : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI questionText;
+    [SerializeField] private AnswerButton[] answerButtons;
+    [SerializeField] private Canvas questionCanvas;
 
-    [SerializeField]
-    private List<QuestionData> questions;
+    private Dictionary<string, QuestionData> questionMap;
     private QuestionData currentQuestion;
-
-    [SerializeField]
-    private TextMeshProUGUI questionText;
-    [SerializeField]
-    private AnswerButton[] answerButtons;
-
-    [SerializeField]
     private int correctAnswerChoice;
+
+    public event Action OnAnswered;
+
+    private Transform trackedHead;
 
     private void Awake()
     {
-        GetQuestionAssets();
+        LoadAllQuestions();
+        questionCanvas.gameObject.SetActive(false); // Hide questionbubble initially
+
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+
+    private void LoadAllQuestions()
     {
-        // get a new question
-        SelectNewQuestion();
-        // set all text and values
+        questionMap = new Dictionary<string, QuestionData>();
+        QuestionData[] allQuestions = Resources.LoadAll<QuestionData>("Questions");
+
+        if (allQuestions == null || allQuestions.Length == 0)
+        {
+            Debug.LogError("No QuestionData assets found in Resources/Questions folder! Please ensure they exist.");
+        }
+
+        foreach (QuestionData q in allQuestions)
+        {
+            questionMap[q.name] = q;
+        }
+    }
+
+    public void ShowQuestionByName(string questionName, Transform cameraTransform)
+    {
+        if (!questionMap.TryGetValue(questionName, out currentQuestion))
+        {
+            Debug.LogError($"Question not found: {questionName}");
+            return;
+        }
+
+        trackedHead = cameraTransform;
+
         SetQuestionValues();
-        // set all of the answer texts and correct answer value
         SetAnswerValues();
-    }
+        PositionInFrontOfCamera(trackedHead);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void GetQuestionAssets()
-    {
-        // get all questions from folder
-        questions = new List<QuestionData>(Resources.LoadAll<QuestionData>("Questions"));
-    }
-
-    private void SelectNewQuestion()
-    {
-        // Get a random value for which question to choose
-        int randomQuestionIndex = Random.Range(0, questions.Count);
-        // set the question to the random index
-        currentQuestion = questions[randomQuestionIndex];
-        // remove the question from the list so it will not e repeated
-        questions.RemoveAt(randomQuestionIndex);
-
+        questionCanvas.gameObject.SetActive(true);
     }
 
     private void SetQuestionValues()
@@ -79,8 +82,7 @@ public class QuestionSetup : MonoBehaviour
                 isCorrect = true;
             }
 
-            answerButtons[i].SetIsCorrect(isCorrect);
-            answerButtons[i].SetAnswerText(answers[i]);
+            answerButtons[i].SetAnswer(answers[i], isCorrect, this);
         }
     }
 
@@ -93,7 +95,7 @@ public class QuestionSetup : MonoBehaviour
         for (int i =0; i < answerButtons.Length; i++)
         {
             // get a random number
-            int random = Random.Range(0, originalList.Count);
+            int random = UnityEngine.Random.Range(0, originalList.Count);
 
             // if the random number is 0, this is the correct answer
             if (random == 0 && !correctAnswerChosen)
@@ -110,4 +112,34 @@ public class QuestionSetup : MonoBehaviour
 
         return newList;
     }
+
+    private void PositionInFrontOfCamera(Transform cameraTransform)
+    {
+        Vector3 forward = cameraTransform.forward;
+        forward.y = 0;
+        forward.Normalize();
+
+        Vector3 spawnPosition = cameraTransform.position + forward * 5f;
+        spawnPosition.y += 0f; // Raise it to approx. head height
+
+        transform.position = spawnPosition;
+        transform.rotation = Quaternion.LookRotation(forward);
+    }
+
+
+    public void OnAnswerSelected()
+    {
+        questionCanvas.gameObject.SetActive(false);
+        OnAnswered?.Invoke();
+    }
+
+    private void LateUpdate()
+    {
+        if (trackedHead != null && questionCanvas.gameObject.activeSelf)
+        {
+            PositionInFrontOfCamera(trackedHead);
+        }
+    }
+
+
 }
