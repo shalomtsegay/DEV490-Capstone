@@ -26,16 +26,32 @@ public class GameController : MonoBehaviour
     {
         yield return new WaitForSeconds(15f);
 
+        // Each method has its own individual action
+        wheelchair.StartMoveForward(routeSteps[0].distance); // Move forward in the bus door
+        yield return new WaitUntil(() => wheelchairFinishedMoving()); // Wait for action to finish
+
+        wheelchair.StartTurn(routeSteps[0].angle); // Rotate/ turn left 
+        yield return new WaitUntil(() => wheelchairFinishedTurning()); // Wait for action to finish
+
+        wheelchair.StartMoveForward(routeSteps[1].distance); // Go forward past the bus driver seat
+        yield return new WaitUntil(() => wheelchairFinishedMoving()); // Wait for action to finish
+
+        wheelchair.StartTurn(routeSteps[1].angle); // Rotate / turn the wheelchair to the left to straighten the wheelchair straight in the bus
+        yield return new WaitUntil(() => wheelchairFinishedTurning()); // Wait for action to finish
+
+        wheelchair.StartMoveForward(routeSteps[2].distance); // Move forward in the bus and align the wheelchair to the quantum seats
+        yield return new WaitUntil(() => wheelchairFinishedMoving()); // Wait for action to finish
+
+        wheelchair.StartTurn(routeSteps[2].angle); // Rotate / turn the wheelchair to the right towards the quantum wheelchair
+        yield return new WaitUntil(() => wheelchairFinishedTurning()); // Wait for action to finish
+
+        wheelchair.StartMoveForward(routeSteps[3].distance); // Move forward towards the quantum seat
+        yield return new WaitUntil(() => wheelchairFinishedMoving()); // Wait for action to finish
+
+        wheelchair.StartTurn(routeSteps[3].angle); // Rotate / turn the wheelchair to the left to straighten the back towards the quantum seat
+        yield return new WaitUntil(() => wheelchairFinishedTurning()); // Wait for action to finish
+
         // Bus Doors Open and Ramp Deploys
-
-        // NPC rolls up to the bus
-        wheelchair.StartMoveForward(routeSteps[0].distance);
-        yield return new WaitUntil(() => wheelchairFinishedMoving());
-
-        wheelchair.StartTurn(routeSteps[0].angle);
-        yield return new WaitUntil(() => wheelchairFinishedTurning());
-
-        wheelchair.stopWheelchair(); // Final stop
 
         // QUESTION 1
         yield return ShowQuestion("BUS_GREETING");
@@ -44,14 +60,6 @@ public class GameController : MonoBehaviour
 
         // NPC loads onto the bus
 
-        wheelchair.StartMoveForward(routeSteps[0].distance);
-        yield return new WaitUntil(() => wheelchairFinishedMoving());
-
-        wheelchair.StartTurn(routeSteps[0].angle);
-        yield return new WaitUntil(() => wheelchairFinishedTurning());
-
-        wheelchair.stopWheelchair(); // Final stop
-
         // QUESTION 2
         yield return ShowQuestion("NAV_TO_SECUREMENT");
 
@@ -59,13 +67,7 @@ public class GameController : MonoBehaviour
 
         // NPC goes to securement spot
 
-        wheelchair.StartMoveForward(routeSteps[0].distance);
-        yield return new WaitUntil(() => wheelchairFinishedMoving());
-
-        wheelchair.StartTurn(routeSteps[0].angle);
-        yield return new WaitUntil(() => wheelchairFinishedTurning());
-
-        wheelchair.stopWheelchair(); // Final stop
+       
 
         // QUESTION 3
         yield return ShowQuestion("SECUREMENT_OFFER");
@@ -74,14 +76,6 @@ public class GameController : MonoBehaviour
 
         // NPC gets into exact spot, Assist with Securement
 
-        wheelchair.StartMoveForward(routeSteps[0].distance);
-        yield return new WaitUntil(() => wheelchairFinishedMoving());
-
-        wheelchair.StartTurn(routeSteps[0].angle);
-        yield return new WaitUntil(() => wheelchairFinishedTurning());
-
-        wheelchair.stopWheelchair(); // Final stop
-
         // QUESTION 4
         yield return ShowQuestion("DISEMBARK_INSTRUCTIONS");
 
@@ -89,14 +83,7 @@ public class GameController : MonoBehaviour
 
         // No movement
 
-        wheelchair.StartMoveForward(routeSteps[0].distance);
-        yield return new WaitUntil(() => wheelchairFinishedMoving());
-
-        wheelchair.StartTurn(routeSteps[0].angle);
-        yield return new WaitUntil(() => wheelchairFinishedTurning());
-
-        wheelchair.stopWheelchair(); // Final stop
-
+        
         // QUESTION 5
         yield return ShowQuestion("DISEMBARK_RESPONSE");
 
@@ -122,28 +109,12 @@ public class GameController : MonoBehaviour
 
         // NPC unloads
 
-        wheelchair.StartMoveForward(routeSteps[0].distance);
-        yield return new WaitUntil(() => wheelchairFinishedMoving());
-
-        wheelchair.StartTurn(routeSteps[0].angle);
-        yield return new WaitUntil(() => wheelchairFinishedTurning());
-
-        wheelchair.stopWheelchair(); // Final stop
-
         // QUESTION 8
         yield return ShowQuestion("GOODBYE");
 
         yield return new WaitForSeconds(2f);
 
         // NPC turn around to face the bus
-
-        wheelchair.StartMoveForward(routeSteps[0].distance);
-        yield return new WaitUntil(() => wheelchairFinishedMoving());
-
-        wheelchair.StartTurn(routeSteps[0].angle);
-        yield return new WaitUntil(() => wheelchairFinishedTurning());
-
-        wheelchair.stopWheelchair(); // Final stop
 
         //NPC says goodbye
 
@@ -182,9 +153,10 @@ public class GameController : MonoBehaviour
     // for controlling the wheelchair
     public (float distance, float angle)[] routeSteps = new (float, float)[]
     {
-        (3.4f, -55f), // move 3.6 forward, rotate/turn -55 left. Positive is right. 
-        (0.65f, -55f), // etc..
-        (3.25f, 180f),
+        (3.3f, -55f), // move 3.6 forward, rotate/turn -55 left. Positive is right. 
+        (0.65f, -60f), // etc..
+        (2.5f, 125f),
+        (0.8f, -128f),
     };
 
     // This makes sure an action is done first before moving on to the next. Just call either of the two methods below with the appropriate action after you call that 
