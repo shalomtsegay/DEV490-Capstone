@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private Transform playerCamera;          // Drag Main Camera or XR Rig CenterEyeAnchor
 
     [SerializeField] private GameObject playerController; // Assign movement script (The whole camera rig)(VRPlayerMovement)
+    [SerializeField] public WheelChairMovement wheelchair;
 
 
     // Optional future references
@@ -176,16 +177,14 @@ public class GameController : MonoBehaviour
         playerController.SetActive(true); // Re-enable player movement
     }
 
-    public WheelChairMovement wheelchair;
     // Routing directions
     // You can specify which pair of values you want to use and whether you want to use distance for moving forward or angle for turning in the arguments or parameters
     // for controlling the wheelchair
     public (float distance, float angle)[] routeSteps = new (float, float)[]
     {
-        (3.6f, -55f), // move 3.6 forward, rotate/turn -55 left. Positive is right. 
-        (1.4f, 45f), // etc..
-        //(6f, 180f),
-        //(2f, 0f)
+        (3.4f, -55f), // move 3.6 forward, rotate/turn -55 left. Positive is right. 
+        (0.65f, -55f), // etc..
+        (3.25f, 180f),
     };
 
     // This makes sure an action is done first before moving on to the next. Just call either of the two methods below with the appropriate action after you call that 
