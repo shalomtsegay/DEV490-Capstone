@@ -25,7 +25,7 @@ public class GameController2 : MonoBehaviour
     {
         quantumAnimator.DroppedQuantumArm();
 
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(5f);
 
         // --- Start of leaving the bus
 

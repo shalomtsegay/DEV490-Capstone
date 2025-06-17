@@ -22,12 +22,12 @@ public class GameController : MonoBehaviour
 
     private IEnumerator RunGameSequence()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(10f);
 
         //QUESTION 1
         yield return ShowQuestion("BUS_GREETING");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         // Each method has its own individual action
         wheelchair.StartMoveForward(routeSteps[0].distance); // Move forward in the bus door
@@ -39,7 +39,7 @@ public class GameController : MonoBehaviour
         // QUESTION 2
         yield return ShowQuestion("NAV_TO_SECUREMENT");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         wheelchair.StartMoveForward(routeSteps[1].distance); // Go forward past the bus driver seat
         yield return new WaitUntil(() => wheelchairFinishedMoving()); // Wait for action to finish
@@ -56,7 +56,7 @@ public class GameController : MonoBehaviour
         // QUESTION 3
         yield return ShowQuestion("SECUREMENT_OFFER");
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         wheelchair.StartMoveForward(routeSteps[3].distance); // Move forward towards the quantum seat
         yield return new WaitUntil(() => wheelchairFinishedMoving()); // Wait for action to finish
@@ -71,7 +71,7 @@ public class GameController : MonoBehaviour
         // QUESTION 4
         yield return ShowQuestion("DISEMBARK_INSTRUCTIONS");
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
 
         // Load second scene
         AsyncOperation load = SceneManager.LoadSceneAsync("ShalomSave2Post");
@@ -109,9 +109,9 @@ public class GameController : MonoBehaviour
     public (float distance, float angle)[] routeSteps = new (float, float)[]
     {
         (3.3f, -55f), // move 3.6 forward, rotate/turn -55 left. Positive is right. 
-        (0.65f, -60f), // etc..
-        (2.5f, 125f),
-        (0.75f, -128f),
+        (0.65f, -70f), // etc..
+        (2.55f, 125f),
+        (0.7f, -128f),
     };
 
     public (float distance, float angle)[] routeLeaveSteps = new (float, float)[]
