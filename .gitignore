@@ -54,6 +54,11 @@ ExportedObj/
 
 # Unity3D generated file on crash reports
 sysinfo.txt
+*.json
+TempAssembly.dll
+.utmp/
+/WheelchairSimulationVR_BurstDebugInformation_DoNotShip/
+
 
 # Builds
 *.apk
